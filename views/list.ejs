@@ -1,0 +1,11 @@
+<%- include header %>
+
+    <h1><%= title %></h1>
+    <p>username: <%= username %></p>
+    <ul><% items.forEach(function(listitem){ %>
+    	<%- include listitem %>
+    	<% }) %>
+    </ul>
+    
+
+<%- include footer %>

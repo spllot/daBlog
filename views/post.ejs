@@ -1,0 +1,23 @@
+<%- include header %>
+
+
+<form method="post" action="/post" style="padding:10px 0 0 50px;background-color:#eeeeee;margin-top:-1px;">
+<fieldset >
+		<legend>用户发布</legend>
+		<div class="control-group">
+			<label class="control-label" for="title">标题</label>
+			<div class="controls">
+				<input type="text" class="span4" name="title">
+			</div>
+		</div>
+		<div class="control-group">
+			<label for="post" class="control-lable">文章</label>
+			<textarea  class="span8" name="post" style="height:200px;"></textarea>
+			<div class="form-actions span8">
+				<button type="submit" class="btn btn-success "> 发言</button>
+			</div>
+		</div>
+</fieldset>
+</form>
+
+<%- include footer %>

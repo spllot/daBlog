@@ -1,0 +1,16 @@
+<%- include header %>
+<fieldset>
+		<legend>文章浏览</legend>
+</fieldset>
+<% locals.posts.forEach(function(post, index){ %>
+	<div style='background-color:#eeeeee;margin:5px;'>
+    	<p>
+    		<h2><a href="#"><%= post.title %></a></h2>
+    	<time><%= post.time %> by:<a href="#"><%= post.user %></a></time>
+   	 	
+   	 
+    	<h5><%- post.post %></h5></p>
+    </div>
+<% }) %>
+
+<%- include footer %>
