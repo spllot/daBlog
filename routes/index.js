@@ -7,6 +7,24 @@ var User = require('../models/user.js');
 var Post = require('../models/post.js');
 
 module.exports = function(app){
+	app.get('/chapter/list', function(req, res){
+	
+  		Post.get(null, function(err, posts){
+  			if(err){
+  				posts = [];
+  			}
+  			res.render('page-chapter-list.ejs',{
+  				title: 'ICBU Center',
+  				name: 'blog' ,
+  				user: req.session.user,
+  				username: (req.session.user || {name:'null'}).name,
+				success: req.flash('success').toString(),
+				error: req.flash('error').toString(),
+				posts: posts
+  			});
+  		});
+	});
+
 	//routes
 	app.get('/', function(req, res){
 	

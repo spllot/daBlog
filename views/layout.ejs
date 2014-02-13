@@ -3,9 +3,13 @@
 	<head>
 		<meta charset="UTF-8">
 		<title><%= title %></title>
-		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<link rel='stylesheet' href='/css/base.css' />
+        <script type="text/javascript" src="/js/jquery.1.9.1.js"></script>
 	</head>
 	<body>
-		<%- body %>
+        <%- include widget-common-header %>
+        <%- include widget-common-nav %>
+		<%- include content%>
+        <%- include widget-common-footer %>
 	</body>
 </html>
