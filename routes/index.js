@@ -5,24 +5,39 @@
 var crypto = require('crypto');
 var User = require('../models/user.js');
 var Post = require('../models/post.js');
+var DB   = require('../models/db.js');
+var Chapter = require('../models/chapter.js');
 
 module.exports = function(app){
 	app.get('/chapter/list', function(req, res){
-	
-  		Post.get(null, function(err, posts){
-  			if(err){
-  				posts = [];
+		//var chapter = new Chapter();
+		Chapter.getAll(null,function(err,chapters){
+			console.log(chapters);
+			if(err){
+  				chapters = [];
   			}
   			res.render('page-chapter-list.ejs',{
-  				title: 'ICBU Center',
-  				name: 'blog' ,
-  				user: req.session.user,
-  				username: (req.session.user || {name:'null'}).name,
-				success: req.flash('success').toString(),
-				error: req.flash('error').toString(),
-				posts: posts
+  				title : "文章列表",
+				chapters: chapters
   			});
-  		});
+		});
+	});
+
+	app.get('/chapter/add',function(req,res){
+		var chapter = {
+	        title: "标题title",
+	        content: "内容content",
+	        author: "spllot.wangl",
+	        tags: "",
+	        cname: "",
+	        cid: "",
+	        createtime: (new Date()).getTime(),
+	        lastmodify: (new Date()).getTime()
+	    };
+	    var ch = new Chapter(chapter);
+	    ch.add(function(err){
+	    	console.log(err);
+	    });
 	});
 
 	//routes
