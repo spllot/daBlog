@@ -13,6 +13,23 @@
 		<div class="control-group">
 			<label for="post" class="control-lable">文章</label>
 			<textarea  class="span8" name="post" style="height:200px;"></textarea>
+			<script charset="utf-8" src="/js/kindeditor/kindeditor-min.js"></script>
+            <script charset="utf-8" src="/js/kindeditor/lang/zh_CN.js"></script>
+            <script>
+                var editor;
+                KindEditor.ready(function(K) {
+                    editor = K.create('textarea[name="post"]', {
+                        resizeType : 1,
+                        items : [
+                            'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                            'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                            'insertunorderedlist', '|', 'emoticons', 'image', 'link'
+                        ],
+                        uploadJson : '/upload',
+                        allowFileManager : true
+                    });
+                });
+            </script>
 			<div class="form-actions span8">
 				<button type="submit" class="btn btn-success "> 发言</button>
 			</div>

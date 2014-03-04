@@ -7,6 +7,8 @@ var User = require('../models/user.js');
 var Post = require('../models/post.js');
 var DB   = require('../models/db.js');
 var Chapter = require('../models/chapter.js');
+var fs = require('fs');
+
 
 module.exports = function(app){
 	app.get('/chapter/list', function(req, res){
@@ -207,7 +209,21 @@ module.exports = function(app){
   			});
   		});
 	});
-	
+
+    // 文件上传
+    app.post("/upload", function(req, res) {
+        var tmp_path = req.files.imgFile.path;
+        var realPath = "uploads/images/" + req.files.imgFile.name;
+        var target_path = "public/" + realPath;
+        var is = fs.createReadStream(tmp_path);
+        var os = fs.createWriteStream(target_path);
+        is.pipe(os);
+        is.on('end',function() {
+            fs.unlinkSync(tmp_path);
+        });
+        res.send({"error": 0, "url": realPath});
+    });
 };
+
 
 
